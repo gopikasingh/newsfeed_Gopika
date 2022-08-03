@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:newsfeed/NewsFeed.dart';
 import 'package:newsfeed/countries.dart';
 import 'package:newsfeed/deviceInfo.dart';
-import 'package:newsfeed/search.dart';
 void main() {
   runApp( const MyApp());
 }

@@ -82,7 +82,7 @@ class _CountryState extends State<Country> {
               padding: const EdgeInsets.only(bottom: 18.0),
               child: Row(
                 children: [
-                  Text(listlen.toString()),
+                  //Text(listlen.toString()),
                   Padding(
                     padding: const EdgeInsets.only(right: 12.0, left: 10),
                     child: Column(
