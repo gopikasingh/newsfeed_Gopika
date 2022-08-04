@@ -27,9 +27,6 @@ class _emptyState extends State<empty> {
         padding: EdgeInsets.zero,
         children: <Widget>[
           Text("hie"),
-
-
-
         ],
       ),
       //bottomNavigationBar:

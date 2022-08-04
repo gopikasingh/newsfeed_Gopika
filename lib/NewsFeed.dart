@@ -21,38 +21,6 @@ class _newsFeedState extends State<newsFeed> {
         body: ListView(
           children: <Widget>[
 
-            // Padding(
-            //   padding: const EdgeInsets.only(top: 32.0, left: 12, right: 12),
-            //   child: Container(
-            //     height: 50,
-            //     decoration: BoxDecoration(
-            //         borderRadius: BorderRadius.only(
-            //           topRight: Radius.circular(15),
-            //           topLeft: Radius.circular(15)
-            //         ),
-            //         gradient: LinearGradient(
-            //           // begin: Alignment.topCenter,
-            //           // end: Alignment.bottomCenter,
-            //           colors: [
-            //             Color(0xFF3aa0d8),
-            //             //Colors.pink,
-            //             Color(0xFFc33bff),
-            //
-            //           ],
-            //         )
-            //     ),
-            //     child: Padding(
-            //       padding: const EdgeInsets.only(left: 8.0),
-            //       child: Row(
-            //         crossAxisAlignment: CrossAxisAlignment.center,
-            //         children: [
-            //           Text("ADVANCED FEATURES", style: TextStyle(color: Colors.white, fontSize: 18),),
-            //         ],
-            //       ),
-            //     ),
-            //   ),
-            // ),
-
             SizedBox(
                 height: MediaQuery.of(context).size.height,
                 child: Padding(
@@ -67,9 +35,6 @@ class _newsFeedState extends State<newsFeed> {
             ),
 
 
-
-
-
             SizedBox(
               height: 20,
             )
@@ -77,27 +42,6 @@ class _newsFeedState extends State<newsFeed> {
           ],
         ),
 
-
-
-        // bottomNavigationBar: BottomNavigationBar(
-        //   items: const <BottomNavigationBarItem>[
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.newspaper_outlined),
-        //       label: 'News',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.search),
-        //       label: 'Search',
-        //     ),
-        //     BottomNavigationBarItem(
-        //       icon: Icon(Icons.settings),
-        //       label: 'Settings',
-        //     ),
-        //   ],
-        //   currentIndex: _selectedIndex, //New
-        //   onTap: _onItemTapped,
-        //
-        // ),
     );
   }
 

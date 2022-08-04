@@ -7,8 +7,6 @@ import 'dart:developer';
 class Country extends StatefulWidget {
   const Country({Key? key}) : super(key: key);
 
-
-
   @override
   _CountryState createState() => _CountryState();
 }
@@ -16,26 +14,36 @@ class Country extends StatefulWidget {
 class _CountryState extends State<Country> {
   final double coverHeight = 220;
   final double profileHeight = 110;
-  late String data;
+  late String data="";
   var listlen;
-  List<String> litems = ["India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India"];
+  //List<String> litems = ["India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India", "India"];
   static const double bottomNavHeight = 50;
 
   @override
   void initState() {
     super.initState();
+    getCountryData();
   }
 
   void getCountryData() async {
-    http.Response res = await http.get("https://api.first.org/v1/get-countries");
+    http.Response res = await http.get("https://restcountries.com/v3.1/all", headers: {
+      "Accept": "application/json",
+      "Access-Control_Allow_Origin": "*",
+      "Access-Control-Allow-Headers": "Access-Control-Allow-Origin, Accept"
+    });
 
+    // log('data: $res.body');
     if (res.statusCode == 200) {
       data = res.body;
-      print(data);
+      print(jsonDecode(data)[0]['name']['common']);
+      print(jsonDecode(data)[0]['flags']["png"]);
 
       setState(() {
-        listlen = jsonDecode(data).data;
+        listlen = jsonDecode(data);
+        log("lenfth = $listlen.length");
       });
+    } else {
+      log("$res.statusCode");
     }
   }
 
@@ -47,12 +55,11 @@ class _CountryState extends State<Country> {
           padding: EdgeInsets.zero,
           children: <Widget>[
 
-
             Padding(
               padding: const EdgeInsets.fromLTRB(24.0,4.0,10.0,0),
               child: SizedBox(
                 height: MediaQuery.of(context).size.height,
-                child: profileInfo(),
+                child: profileInfo(data),
 
               ),
             ),
@@ -63,12 +70,25 @@ class _CountryState extends State<Country> {
     );
   }
 
+  // ListView profile() {
+  //   return ListView.builder(
+  //       itemCount: litems.length,
+  //       itemBuilder: (BuildContext contextt, int index){
+  //         return FutureBuilder<String>(
+  //             future: data,
+  //             builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+  //               if(!snapshot.hasData) return Text('getting profile url');
+  //               return Image.network(snapshot.data!);
+  //             });
+  //       }
+  //       )
+  // }
 
 
 
-  ListView profileInfo() {
+      ListView profileInfo(data) {
     return ListView.builder(
-      itemCount: litems.length,
+      itemCount: listlen == null ? 0 : listlen.length,
       itemBuilder: (BuildContext contextt, int index){
         return Padding(
           padding: const EdgeInsets.only(top:12.0, bottom: 12, right: 8),
@@ -89,7 +109,8 @@ class _CountryState extends State<Country> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Image.asset("assets/india.jpg", scale: 40,)
+                        Image.network(jsonDecode(data)[index]['flags']["png"], scale: 10,)
+                        // Image.asset("assets/india.jpg", scale: 40,)
                       ],
                     ),
                   ),
@@ -98,7 +119,7 @@ class _CountryState extends State<Country> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(litems[index], style: TextStyle( fontSize: 16)),
+                          Text(jsonDecode(data)[index]['name']['common'], style: TextStyle( fontSize: 16)),
                         ],
                       )
                   ),
